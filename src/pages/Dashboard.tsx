@@ -18,24 +18,17 @@ const Dashboard = () => {
     {
       id: 1,
       title: 'Medication Error Alert',
-      pharmacist: 'Dr.Bassam Ali',
+      jobTitle: 'Pharmacist',
       department: 'Emergency',
       prescriptionNumber: 'RX-772428',
-      isNew: true,
-    },
-    {
-      id: 2,
-      title: 'Medication Error Alert',
-      pharmacist: 'Dr.Omar Raed',
-      department: 'Cardiology',
-      prescriptionNumber: 'RX-881234',
       isNew: true,
     },
   ];
 
   return (
     <MobileLayout>
-      <div className="gradient-header px-5 pt-6 pb-4">
+      {/* Header with gradient */}
+      <div className="gradient-header px-5 pt-6 pb-8">
         <div className="flex items-center gap-3">
           <TadarakLogo size="sm" showText={false} />
           <h1 className="text-xl font-bold text-foreground">
@@ -44,7 +37,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="px-5 py-6 space-y-6 animate-fade-in">
+      <div className="px-5 py-6 space-y-6 animate-fade-in -mt-4">
         {/* Dashboard Stats */}
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4">Dashboard</h2>
@@ -54,6 +47,58 @@ const Dashboard = () => {
             ))}
           </div>
         </section>
+
+        {/* Latest Reports - Only show when there's a new one */}
+        {latestReports.some(r => r.isNew) && (
+          <section>
+            <h2 className="text-lg font-semibold text-foreground mb-4">Latest Reports</h2>
+            <div className="space-y-4">
+              {latestReports.map((report) => (
+                <div 
+                  key={report.id}
+                  className="bg-secondary rounded-2xl p-4 shadow-card"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="font-semibold text-foreground">{report.title}</h3>
+                    {report.isNew && (
+                      <Badge className="bg-destructive text-destructive-foreground text-xs">
+                        New
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="space-y-2 text-sm border-t border-border/50 pt-3">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Job Title</span>
+                      <span className="font-medium text-foreground">{report.jobTitle}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Department</span>
+                      <span className="font-medium text-foreground">{report.department}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Prescription Number</span>
+                      <span className="font-medium text-foreground">{report.prescriptionNumber}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 mt-4">
+                    <Button 
+                      onClick={() => navigate(`/report/${report.id}`)}
+                      className="flex-1 py-5 rounded-2xl"
+                    >
+                      View
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      className="flex-1 py-5 rounded-2xl border-primary text-primary hover:bg-primary/5"
+                    >
+                      Mark as Received
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Action Buttons */}
         <section className="space-y-3">
@@ -75,56 +120,6 @@ const Dashboard = () => {
           >
             Review Pending Reports
           </Button>
-        </section>
-
-        {/* Latest Reports */}
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-4">Latest Reports</h2>
-          <div className="space-y-4">
-            {latestReports.map((report) => (
-              <div 
-                key={report.id}
-                className="bg-card rounded-2xl border border-border p-4 shadow-card"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-foreground">{report.title}</h3>
-                  {report.isNew && (
-                    <Badge className="bg-destructive text-destructive-foreground text-xs">
-                      New
-                    </Badge>
-                  )}
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-primary font-medium">Pharmacists Name</span>
-                    <span className="text-muted-foreground">{report.pharmacist} (auto Filled)</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-primary font-medium">Department</span>
-                    <span className="text-muted-foreground">{report.department} (auto Filled)</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-primary font-medium">Prescription Number</span>
-                    <span className="text-muted-foreground">{report.prescriptionNumber} (auto Filled)</span>
-                  </div>
-                </div>
-                <div className="flex gap-3 mt-4">
-                  <Button 
-                    onClick={() => navigate(`/report/${report.id}`)}
-                    className="flex-1 py-5 rounded-2xl"
-                  >
-                    View
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    className="flex-1 py-5 rounded-2xl border-primary text-primary hover:bg-primary/5"
-                  >
-                    Mark as Received
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
         </section>
       </div>
     </MobileLayout>
