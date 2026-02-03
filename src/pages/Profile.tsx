@@ -9,7 +9,7 @@ const Profile = () => {
     { label: 'Full Name', value: 'Sara Ali' },
     { label: 'ID Number', value: '1127457084' },
     { label: 'Employee Number', value: '309845' },
-    { label: 'Jop Title', value: 'Pharmacist' },
+    { label: 'Job Title', value: 'Pharmacist' },
     { label: 'Phone Number', value: '+966541179900' },
     { label: 'Country', value: 'Saudi Arabia' },
     { label: 'Gender', value: 'Female' },
@@ -22,7 +22,7 @@ const Profile = () => {
         <div className="pt-6 px-4 pb-4 flex items-center gap-4 border-b border-border">
           <button 
             onClick={() => navigate(-1)}
-            className="p-2 rounded-xl border border-primary text-primary hover:bg-secondary transition-colors"
+            className="p-2 rounded-full bg-secondary text-foreground hover:bg-accent transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>

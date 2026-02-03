@@ -59,20 +59,36 @@ const Notifications = () => {
   const getIcon = (type: string) => {
     switch (type) {
       case 'updated':
-        return <CheckCircle className="w-5 h-5 text-primary-foreground" />;
+        return <CheckCircle className="w-5 h-5 text-success" />;
       case 'comment':
-        return <MessageSquare className="w-5 h-5 text-primary-foreground" />;
+        return <MessageSquare className="w-5 h-5 text-muted-foreground" />;
       case 'rejected':
-        return <XCircle className="w-5 h-5 text-primary-foreground" />;
+        return <XCircle className="w-5 h-5 text-destructive" />;
       default:
-        return <CheckCircle className="w-5 h-5 text-primary-foreground" />;
+        return <CheckCircle className="w-5 h-5 text-success" />;
+    }
+  };
+
+  const getIconBg = (type: string) => {
+    switch (type) {
+      case 'updated':
+        return 'bg-success/10';
+      case 'comment':
+        return 'bg-muted';
+      case 'rejected':
+        return 'bg-destructive/10';
+      default:
+        return 'bg-success/10';
     }
   };
 
   return (
     <MobileLayout>
       <div className="px-5 py-6">
-        <h1 className="text-xl font-bold text-foreground mb-6">Notification</h1>
+        {/* Header with border */}
+        <div className="pb-4 border-b border-border mb-6">
+          <h1 className="text-xl font-bold text-foreground text-center">Notification</h1>
+        </div>
 
         <div className="space-y-6 animate-fade-in">
           {Object.entries(groupedNotifications).map(([day, items]) => (
@@ -84,7 +100,7 @@ const Notifications = () => {
                     key={notification.id}
                     className="bg-secondary rounded-2xl p-4 flex items-start gap-3"
                   >
-                    <div className="p-2 bg-primary rounded-full">
+                    <div className={`p-2 rounded-full ${getIconBg(notification.type)}`}>
                       {getIcon(notification.type)}
                     </div>
                     <div className="flex-1">

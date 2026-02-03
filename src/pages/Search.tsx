@@ -16,7 +16,7 @@ const Search = () => {
 
   return (
     <MobileLayout>
-      <div className="px-5 py-6 animate-fade-in">
+      <div className="px-5 py-8 animate-fade-in">
         {/* Search Input */}
         <div className="relative mb-8">
           <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -25,7 +25,7 @@ const Search = () => {
             placeholder="Enter Prescription Number"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-12 py-6 rounded-2xl border-border bg-card text-base"
+            className="pl-12 py-6 rounded-full border-border bg-card text-base"
           />
         </div>
 

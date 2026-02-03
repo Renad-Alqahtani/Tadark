@@ -11,11 +11,11 @@ import { ChevronLeft, Camera } from 'lucide-react';
 const SubmitReport = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    jobTitle: 'Pharmacist',
     prescriptionNumber: '',
     medicationName: '',
     errorType: '',
     department: '',
-    timeOfDetection: '',
     note: '',
   });
 
@@ -28,10 +28,10 @@ const SubmitReport = () => {
     <MobileLayout showNav={false}>
       <div className="min-h-screen bg-card flex flex-col">
         {/* Header */}
-        <div className="pt-6 px-4 pb-4">
+        <div className="pt-6 px-4 pb-2">
           <button 
             onClick={() => navigate(-1)}
-            className="p-2 rounded-xl border border-border hover:bg-secondary transition-colors"
+            className="p-2 rounded-full bg-secondary hover:bg-accent transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
@@ -44,6 +44,27 @@ const SubmitReport = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Job Title of Reporter */}
+            <div className="space-y-2">
+              <Label htmlFor="jobTitle" className="font-semibold">
+                Job Title of Reporter
+              </Label>
+              <Select 
+                value={formData.jobTitle}
+                onValueChange={(value) => setFormData({ ...formData, jobTitle: value })}
+              >
+                <SelectTrigger className="py-5 rounded-xl bg-muted/50">
+                  <SelectValue placeholder="Select Job Title" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Pharmacist">Pharmacist</SelectItem>
+                  <SelectItem value="Nurse">Nurse</SelectItem>
+                  <SelectItem value="Physician">Physician</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
             {/* Prescription Number */}
             <div className="space-y-2">
               <Label htmlFor="prescriptionNumber" className="font-semibold">
@@ -65,7 +86,7 @@ const SubmitReport = () => {
               </Label>
               <Input
                 id="medicationName"
-                placeholder="Ex: Medication dosage error"
+                placeholder="Ex: Paracetamol"
                 value={formData.medicationName}
                 onChange={(e) => setFormData({ ...formData, medicationName: e.target.value })}
                 className="py-5 rounded-xl bg-muted/50"
@@ -79,7 +100,7 @@ const SubmitReport = () => {
               </Label>
               <Input
                 id="errorType"
-                placeholder="Ex: Paracetamol"
+                placeholder="Ex: Medication dosage error"
                 value={formData.errorType}
                 onChange={(e) => setFormData({ ...formData, errorType: e.target.value })}
                 className="py-5 rounded-xl bg-muted/50"
@@ -100,30 +121,10 @@ const SubmitReport = () => {
               />
             </div>
 
-            {/* Time of Detection */}
-            <div className="space-y-2">
-              <Label htmlFor="timeOfDetection" className="font-semibold">
-                Time of Detection
-              </Label>
-              <Select 
-                value={formData.timeOfDetection}
-                onValueChange={(value) => setFormData({ ...formData, timeOfDetection: value })}
-              >
-                <SelectTrigger className="py-5 rounded-xl bg-muted/50">
-                  <SelectValue placeholder="Select an Option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="before">Before Administration</SelectItem>
-                  <SelectItem value="during">During Administration</SelectItem>
-                  <SelectItem value="after">After Administration</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
             {/* Note */}
             <div className="space-y-2">
               <Label htmlFor="note" className="font-semibold">
-                Send a note
+                Send a not
               </Label>
               <div className="relative">
                 <Textarea
