@@ -15,7 +15,7 @@ export const TadarakLogo = ({ size = 'lg', showText = true }: TadarakLogoProps) 
   return (
     <div className="flex flex-col items-center gap-2">
       <img 
-        src="/11.png" 
+        src="/12.png" 
         alt="Tadarak Logo" 
         className={`${sizes[size]} w-auto object-contain`} 
       />
