@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
-import Login from "./pages/Login";
 import SubmitReport from "./pages/SubmitReport";
 import Success from "./pages/Success";
 
@@ -18,8 +17,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/submit-report" element={<SubmitReport />} />
+          <Route path="/" element={<SubmitReport />} />
           <Route path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
