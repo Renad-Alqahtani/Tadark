@@ -13,8 +13,8 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Demo: navigate to dashboard
-    navigate('/dashboard');
+    // Navigate to submit report page
+    navigate('/submit-report');
   };
 
   return (
